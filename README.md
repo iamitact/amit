@@ -1,39 +1,38 @@
 # Twelve Clothing
 
-The Twelve Clothing website: a scroll-driven 3D story for the Nocturne Polo, plus a demo storefront.
+The Twelve Clothing website: a multi-page storefront (Home, Shop, product pages, Story, Lookbook, About, Contact, Bag) with a 3D editorial story.
 
-This repository is **ready for GitHub Pages as-is**. The files here are the finished website. The editable project is packed in `twelve-clothing-source.zip`.
+This folder is **ready for GitHub Pages as-is**. The files here are the finished website. The editable project is packed in `twelve-clothing-source.zip`.
 
-## What must be in the repository
+> **Preview, not final.** Products are 3D concept renders with prices, sizes and availability "to be confirmed". Business details are pending, and online payment is not active (the site says so and takes no orders). What the client still needs to supply is listed in `docs/CLIENT-CHECKLIST.md` inside the source ZIP.
 
-```
-index.html
-favicon.svg
-.nojekyll
-README.md
-twelve-clothing-source.zip
-assets/     ← 10 files (code, styles, fonts) — REQUIRED, the page is blank without it
-renders/    ← 30 images                     — REQUIRED
-```
+## Publish
 
-## Publish with the GitHub website
+This folder has 76 files, under the GitHub web uploader's limit of 100 per upload.
 
-1. Open your repository on GitHub and click **Add file → Upload files**.
-2. In File Explorer, open the folder you extracted, press **Ctrl + A** to select everything (including the `assets` and `renders` **folders**), and **drag** the selection onto the GitHub upload box.
-   - Drag and drop is needed: the *“choose your files”* button can't select folders.
-   - Wait until the list shows files such as `assets/index-….js` and `renders/story-hero-1600.webp`, then click **Commit changes**.
-3. **Settings → Pages**: set **Source: Deploy from a branch**, **Branch: `main`**, folder **`/ (root)`**, then **Save**.
-4. Wait 1–2 minutes and open `https://<your-username>.github.io/<repository-name>/`. Press **Ctrl + F5** to bypass the cache.
+**With the website:** open the repository → **Add file → Upload files**. In File Explorer select **everything** in this folder (Ctrl + A, including the folders and the hidden `.nojekyll`) and **drag** it onto the upload box. The "choose your files" button can't select folders. Check that the list shows paths such as `assets/…`, `shop/…` and `renders/…`, then commit.
 
-**Check:** on the repository's main page you must see the `assets` and `renders` folders. If they are missing, the site shows a black page. Upload them again by dragging the two folders in.
-
-## Run it on your computer
-
-Extract `twelve-clothing-source.zip`, then in that folder:
+**With Git:**
 
 ```bash
-npm ci
-npm run dev        # open http://localhost:5173
+git clone https://github.com/<user>/<repo>.git
+# copy everything from this folder into the clone (including .nojekyll), then:
+git add -A
+git commit -m "Publish Twelve Clothing site"
+git push
 ```
 
-Double-clicking `index.html` (a `file://` page) won't work, because browsers block the site's scripts on local files.
+**Then:** Settings → Pages → **Deploy from a branch** → `main` → `/ (root)` → Save. Pages are served at `https://<user>.github.io/<repo>/`, `…/shop/`, `…/about/` and so on.
+
+This build's absolute links (canonical, sitemap, 404 page) point at `https://iamitact.github.io/amit/`. For another repository, rebuild from source with `SITE_URL=https://<user>.github.io/<repo>/`.
+
+## Edit and rebuild
+
+Extract `twelve-clothing-source.zip` into a folder named `source` next to these files, then:
+
+```bash
+cd source
+npm ci
+npm run dev          # local preview at http://localhost:5173
+npm run build:pages  # rebuilds and replaces the site files in this folder
+```
